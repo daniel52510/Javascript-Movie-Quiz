@@ -20,24 +20,17 @@
         padding: 0;
         margin: 0;
     }
+    .quiz_form {
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
     .title {
         color: crimson;
+        font-size: 1em;
         text-align: center;
         position: relative;
         font-family: 'Caveat', cursive;
-    }
-    .quiz_form {
-        display: flex;
-        justify-content: center;
-        margin: 2%;
-    }
-    #hi {
-        display: flex;
-        align-items: center;
-        position: absolute;
-        left: 0.5em;
-        top: 0.5em;
-        bottom:0.5em;
     }
     label {
         float: left;
@@ -45,9 +38,11 @@
         text-align: center;
     }
     img {
-        position: center;
         width: 400px;
+        max-width: 100%;
+        max-height: 100%;
         height: auto;
+        display:inline-block;
     }
     button {
         font-size: 18px;
@@ -58,22 +53,19 @@
         background-color: darkgray;
     }
     #quest {
-        font-size: 20px;
+        font-size: 1em;
+        margin-left: auto;
+        margin-right: auto;
         font-family: 'Shadows Into Light', cursive;
-    }
-    .score {
-        font-family: AppleGothic, sans-serif;
-        position: absolute;
-        top: 5%;
-        left: 10%;
+
     }
     *,*::before,*::after {
         box-sizing: border-box;
     }
     .progress-bar {
         position: relative;
-        width: 300px;
-        height: 3em;
+        width: 200px;
+        height: 2em;
         background-color: darkred;
         border-radius: 1.5em;
         color:white;
@@ -83,48 +75,113 @@
         display: flex;
         align-items: center;
         position: absolute;
-        left: 0.5em;
-        top: 0.5em;
-        bottom:0.5em;
+        top: 6%;
+        height: 0.5rem;
+        bottom:2em;
         width: calc(var(--width, 0)* 1%);
-        min-width: 2rem;
+        min-width: 0.5em;
         max-width: calc(100% - 1em);
         background-color: red;
         border-radius: 1em;
         padding: 1em;
     }
-    @keyframes progress_animation {
-        0% {width: 0%}
-        5% {width: 5%}
-        10% {width: 10%}
-        15% {width: 15%}
-        20% {width: 20%}
-        25% {width: 25%}
-        30% {width: 30%}
-        35% {width: 35%}
-        40% {width: 40%}
-        45% {width: 45%}
-        50% {width: 50%}
-        55% {width: 55%}
-        60% {width: 60%}
-        65% {width: 65%}
-        70% {width: 70%}
-        75% {width: 75%}
-        80% {width: 80%}
-        85% {width: 85%}
-        90% {width: 90%}
-        95% {width: 95%}
-        100% {width: 100%}
+    .flexbox_container {
+        display: flex;
+        margin-left: 50px;
+        flex-shrink: 2;
     }
+    .flexbox_container1 {
+        display: flex;
+        flex-direction: column;
+        margin-left: 50px;
+        flex-shrink: 2;
+    }
+    .flex_1{
+        text-align: right;
+    }
+    .flex_2 {
+        padding-top: 50px;
+    }
+    .flex_3{
+        margin-left: 6%;
+        max-width: 100%;
+        max-height: 100%;
+        flex-shrink: 2;
+    }
+    #count {
+        font-size: 25px;
+        text-align: center;
+        font-family: AppleGothic;
+        color: red;
+    }
+
 </style>
-<script src="quiz.js">
+<script type="text/javascript" src="quiz.js">
 </script>
 <body>
-<div class="title">
-    <h1>Welcome to the Movie Quiz</h1>
-    <h2 div = "question_count"></h2>
+
+<p id = "count">1/20</p>
+<div class = "flexbox_container">
+    <div class = "flex_1">
+        <h3>Live Percentages: </h3>
+        <h3 id = "action" style = font-size:15px >Action:</h3>
+        <h3 id = "anime" style = font-size:15px;>Anime:</h3>
+        <h3 id = "drama" style = font-size:15px;>Drama:</h3>
+        <h3 id = "fantasy" style = font-size:15px;>Fantasy:</h3>
+        <h3 id = "horror" style = font-size:15px;>Horror:</h3>
+        <h3 id = "comedy" style = font-size:15px;>Comedy:</h3>
+        <h3 id = "psychological" style = font-size:15px;>Psychological:</h3>
+        <h3 id = "scifi" style = font-size:15px;>Sci-Fi:</h3>
+        <h3 id = "western" style = font-size:15px;>Western:</h3>
+        <h3 id = "documentary" style = font-size:15px;>Documentary:</h3>
+    </div>
+    <div class = "flex_2">
+        <div class = "progress-bar" id = "alt" style = "--width: 0">
+            <p id = "hi" style = display:flex;align-items:center;position:absolute;left:0.5em;top:0.5em;bottom:0.5em;>0%</p>
+        </div>
+
+        <div class = "progress-bar" id = "alt1" style = "--width: 0">
+            <p id = "hi1" style = display:flex;align-items:center;position:absolute;left:0.5em;top:0.5em;bottom:0.5em;>0%</p>
+        </div>
+
+
+        <div class = "progress-bar" id = "alt2" style = "--width: 0">
+            <p id = "hi2" style = display:flex;align-items:center;position:absolute;left:0.5em;top:0.5em;bottom:0.5em;>0%</p>
+        </div>
+
+
+        <div class = "progress-bar" id = "alt3" style = "--width: 0">
+            <p id = "hi3" style = display:flex;align-items:center;position:absolute;left:0.5em;top:0.5em;bottom:0.5em;>0%</p>
+        </div>
+
+
+        <div class = "progress-bar" id = "alt4" style = "--width: 0">
+            <p id = "hi4" style = display:flex;align-items:center;position:absolute;left:0.5em;top:0.5em;bottom:0.5em;>0%</p>
+        </div>
+
+        <div class = "progress-bar" id = "alt5" style = "--width: 0">
+            <p id = "hi5" style = display:flex;align-items:center;position:absolute;left:0.5em;top:0.5em;bottom:0.5em;>0%</p>
+        </div>
+
+        <div class = "progress-bar" id = "alt6" style = "--width: 0">
+            <p id = "hi6" style = display:flex;align-items:center;position:absolute;left:0.5em;top:0.5em;bottom:0.5em;>0%</p>
+        </div>
+
+        <div class = "progress-bar" id = "alt7" style = "--width: 0">
+            <p id = "hi7" style = display:flex;align-items:center;position:absolute;left:0.5em;top:0.5em;bottom:0.5em;>0%</p>
+        </div>
+
+        <div class = "progress-bar" id = "alt8" style = "--width: 0">
+            <p id = "hi8" style = display:flex;align-items:center;position:absolute;left:0.5em;top:0.5em;bottom:0.5em;>0%</p>
+        </div>
+
+        <div class = "progress-bar" id = "alt9" style = "--width: 0">
+            <p id = "hi9" style = display:flex;align-items:center;position:absolute;left:0.5em;top:0.5em;bottom:0.5em;>0%</p>
+        </div>
+    </div>
+    <div class = "flex_3"><img src = "" alt = "img" id = "img1" width=400px height=400px></div>
 </div>
-<center><img src = "" alt = "img" id = "img1" width=400px height=400px></center>
+<div class = "flexbox_container1">
 <center><p id = "quest"></p></center>
 <div class = "quiz_form">
 <form>
@@ -144,26 +201,12 @@
     <input type="radio" id="radio5" value=5 name= "answer" onclick="hello()">
     </label>
 </form>
-</div>
-<center><button type = "button" onclick="next_question()" id ="next_butt" disabled>Next</button></center>
-<div class = score>
-<h1>Live Percentages: </h1>
-<h3 id = "action">Action: 0%</h3>
-    <div class = "progress-bar" id = "alt" style = "--width: 0">
-        <p id = "hi">0%</p>
-    </div>
-<h3 id = "anime">Anime: 0%</h3>
 
-
-<h3 id = "drama">Drama: 0%</h3>
-<h3 id = "fantasy">Fantasy: 0%</h3>
-<h3 id = "horror">Horror: 0%</h3>
-<h3 id = "comedy">Comedy: 0%</h3>
-<h3 id = "psychological">Psychological: 0%</h3>
-<h3 id = "scifi">Sci-Fi: 0%</h3>
-<h3 id = "western">Western: 0%</h3>
-<h3 id = "documentary">Documentary: 0%</h3>
 </div>
-<a href = "congrat_page.html"><center><button type = "button" onclick="end_game()" id ="end" disabled>End Game</button></center></a>
+<center><button type = "button" id = "next_butt" onclick="next_question()" disabled>Next</button></center>
+<center><a href = "congrat_page.html"><button type = "button" onclick="end_game()" id ="end" disabled>End Game</button></a></center>
+</div>
 </body>
 </html>
+<!--Flexbox Order-->
+<!--Live Percentages--Actual Percentages--Movie Photos-->

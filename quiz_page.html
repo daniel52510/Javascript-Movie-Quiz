@@ -39,6 +39,7 @@
     }
     img {
         width: 400px;
+        height:400px;
         max-width: 100%;
         max-height: 100%;
         height: auto;
@@ -89,6 +90,7 @@
         display: flex;
         margin-left: 50px;
         flex-shrink: 2;
+        justify-content: center;
     }
     .flexbox_container1 {
         display: flex;
@@ -103,10 +105,10 @@
         padding-top: 50px;
     }
     .flex_3{
-        margin-left: 6%;
         max-width: 100%;
         max-height: 100%;
         flex-shrink: 2;
+        justify-content: center;
     }
     #count {
         font-size: 25px;
@@ -114,7 +116,6 @@
         font-family: AppleGothic;
         color: red;
     }
-
 </style>
 <script type="text/javascript" src="quiz.js">
 </script>
@@ -204,9 +205,9 @@
 
 </div>
 <center><button type = "button" id = "next_butt" onclick="next_question()" disabled>Next</button></center>
-<center><a href = "congrat_page.html"><button type = "button" onclick="end_game()" id ="end" disabled>End Game</button></a></center>
+<center><a href = "congrat_page.html"><button type = "button" onclick="congrat()" id ="end" disabled>End Game</button></a></center>
 </div>
 </body>
 </html>
 <!--Flexbox Order-->
-<!--Live Percentages--Actual Percentages--Movie Photos-->
+<!--Live Percentages--Actual Percentages--Additional Space--Movie Photos-->

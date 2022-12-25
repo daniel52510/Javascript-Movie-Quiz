@@ -1,13 +1,62 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Congrats!</title>
 </head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+    body {
+        background-image: url("confetti.png");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        padding: 0;
+        margin: 0;
+    }
+    #c_butt {
+        background-color: whitesmoke;
+        margin-top: auto;
+        font-family:'Quicksand',sans-serif;
+        color: dodgerblue;
+    }
+    #end_butt {
+        width: 300px;
+        height:150px;
+        margin: auto;
+        font-size: 16px;
+        color: whitesmoke;
+        border-radius: 50%;
+        background-color: dodgerblue;
+    }
+    #thumb {
+        display: flex;
+        height:400px;
+        max-width: 100%;
+        max-height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: white;
+    }
+    #suggest_p {
+        text-align: center;
+        font-size: 2em;
+        color: dodgerblue;
+        font-family: sans-serif;
+        background-color: darkgray;
+    }
+
+</style>
 <script type="text/javascript" src = "quiz.js"></script>
 <body>
-<center><h1>Congratulations, this is the Congrats Page!</h1></center>
-<center><p id = "para">Hello Old Friend! Not Working Still!</p></center>
-<button type = button id = "end_butt" onclick="end_game()">Click for Results</button>
+<center><h1 id = "c_butt" >Congratulations! Click for your Results!</h1></center>
+<div class = "back">
+<img src = thumb_up.jpg id = "thumb">
+<p id = "suggest_p"></p>
+</div>
+<center><button type = button id = "end_butt" onclick="congrat()">Click for Results</button></center>
 </body>
 </html>

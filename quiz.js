@@ -37,6 +37,16 @@ pic_genre.set(6,"quiz7.gif");
 pic_genre.set(7,"quiz8.gif");
 pic_genre.set(8,"quiz9.gif");
 pic_genre.set(9,"quiz10.gif");
+pic_genre.set(10,"quiz11.gif");
+pic_genre.set(11,"quiz12.gif");
+pic_genre.set(12,"quiz13.gif");
+pic_genre.set(13,"quiz14.gif");
+pic_genre.set(14,"quiz15.gif");
+pic_genre.set(15,"quiz16.gif");
+pic_genre.set(16,"quiz17.gif");
+pic_genre.set(17,"quiz18.gif");
+pic_genre.set(18,"quiz19.gif");
+pic_genre.set(19,"quiz20.gif");
 var questions = [
     "How much do you love action movies such as The Terminator?",
     "How much of a fan are you of anime like Gintama or Naruto?",
@@ -58,7 +68,7 @@ var questions = [
     "Do you consider yourself to be a funny person?",
     "Do you have an interest in manga or web comics?",
     "Do you enjoy the adrenaline rush when you do extreme sports?"];
-var count = 1;
+var count = 0;
 //Randomized questions
 var index = Math.floor(Math.random() * 20);
 //Array for containing answered questions
@@ -74,6 +84,17 @@ var psychological = 0;
 var scifi = 0;
 var western = 0;
 var documentary = 0;
+const suggestions = new Map();
+suggestions.set(0,'suggest.jpg');
+suggestions.set(1,'suggest1.jpg');
+suggestions.set(2,'suggest2.jpg');
+suggestions.set(3,'suggest3.jpg');
+suggestions.set(4,'suggest4.jpg');
+suggestions.set(5,'suggest5.jpg');
+suggestions.set(6,'suggest6.jpg');
+suggestions.set(7,'suggest7.jpg');
+suggestions.set(8,'suggest8.jpg');
+suggestions.set(0,'suggest9.jpg');
 function hello() {
     //Created 5 radio buttons
     var rb1 = document.getElementById("radio1");
@@ -105,13 +126,6 @@ function hello() {
         document.getElementById("next_butt").disabled = false;
         selected_level = 5;
     }
-}
-function print_map (map) {
-    let text = "";
-    for (const x of map.entries()) {
-        text += x + "<br>";
-    }
-    return text;
 }
 function set_progress(value, genre) {
     var element;
@@ -164,7 +178,6 @@ window.onload = function start_game() {
     document.getElementById("quest").innerHTML = questions[index];
 }
 function live_score() {
-    alert("selected_level: " + selected_level);
     if(index == 0 || index == 11)  {
         //document.getElementById("action").innerHTML = "Action: " + ((selected_level += action / 20) * 10).toString() + "%";
         set_progress(((action += selected_level / 10) * 100),"action");
@@ -214,9 +227,32 @@ window.onload = function start_game() {
 }
 function next_question() {
     count += 1;
+    document.getElementById("count").innerHTML = (count - 1).toString()  + "/20";
+    if(quest_answered.length == 20) {
+        alert("You Finished the Game!");
+
+        document.getElementById("next_butt").disabled = true;
+        document.getElementById("end").disabled = false;
+        document.getElementById("radio1").disabled = true;
+        document.getElementById("radio2").disabled = true;
+        document.getElementById("radio3").disabled = true;
+        document.getElementById("radio4").disabled = true;
+        document.getElementById("radio5").disabled = true;
+        sessionStorage.setItem('action',action);
+        sessionStorage.setItem('anime',anime);
+        sessionStorage.setItem('drama',drama);
+        sessionStorage.setItem('fantasy',fantasy);
+        sessionStorage.setItem('horror',horror);
+        sessionStorage.setItem('comedy',comedy);
+        sessionStorage.setItem('psychological',psychological);
+        sessionStorage.setItem('scifi',scifi);
+        sessionStorage.setItem('western',western);
+        sessionStorage.setItem('documentary',documentary);
+    }
+    else {
         live_score();
         quest_answered.push(index);
-        while(quest_answered.includes(index) && quest_answered.length != 20) {
+        while (quest_answered.includes(index) && quest_answered.length != 20) {
             index = Math.floor(Math.random() * 20);
         }
         selected_level = 0;
@@ -228,24 +264,101 @@ function next_question() {
         document.getElementById("radio3").checked = false;
         document.getElementById("radio4").checked = false;
         document.getElementById("radio5").checked = false;
-        document.getElementById("count").innerHTML = count.toString() + "/20";
-
-    if(quest_answered.length == 20) {
-        alert("You finished the game!");
-        document.getElementById("next_butt").disabled = true;
-        document.getElementById("end").disabled = false;
+        //alert("Index: " + count);
     }
 }
-function end_game() {
-    var action_final = action;
-    var anime_final = anime;
-    var drama_final = drama;
+function congrat() {
+    var action_final = sessionStorage.getItem('action');
+    var anime_final = sessionStorage.getItem('anime');
+    var drama_final = sessionStorage.getItem('drama');
+    var fantasy_final = sessionStorage.getItem('fantasy');
+    var horror_final = sessionStorage.getItem('horror');
+    var comedy_final = sessionStorage.getItem('comedy');
+    var psychological_final = sessionStorage.getItem('psychological');
+    var scifi_final = sessionStorage.getItem('scifi')
+    var western_final = sessionStorage.getItem('western');
+    var documentary_final = sessionStorage.getItem('documentary');
 
-    alert("Action: " + action_final);
-    alert("Anime: " + anime_final);
-    alert("Drama: " + drama_final);
+    var final_scores = new Map();
+    final_scores.set(0, action_final);
+    final_scores.set(1, anime_final);
+    final_scores.set(2, drama_final);
+    final_scores.set(3, fantasy_final);
+    final_scores.set(4, horror_final);
+    final_scores.set(5, comedy_final);
+    final_scores.set(6, psychological_final);
+    final_scores.set(7, scifi_final);
+    final_scores.set(8, western_final);
+    final_scores.set(9, documentary_final);
 
+    var tied_scores = [];
+
+    var arr_scores = [];
+    arr_scores.push(action_final);
+    arr_scores.push(anime_final);
+    arr_scores.push(drama_final);
+    arr_scores.push(fantasy_final);
+    arr_scores.push(horror_final);
+    arr_scores.push(comedy_final);
+    arr_scores.push(psychological_final);
+    arr_scores.push(scifi_final);
+    arr_scores.push(western_final);
+    arr_scores.push(documentary_final);
+
+    var large = Math.max(...arr_scores);
+    for (let i = 0; i <= 9; i++) {
+        if (final_scores.get(i) == large) {
+            tied_scores.push(i);
+            if(tied_scores.length == 1) {
+                if(tied_scores[0] == 0) {
+                    document.getElementById("thumb").src = "suggest.jpg";
+                    document.getElementById("suggest_p").innerHTML = "You ranked highest in action! You should watch Top Gun: Maverick™!"
+                }
+                if(tied_scores[0] == 1) {
+                    document.getElementById("thumb").src = "suggest1.jpg";
+                    document.getElementById("suggest_p").innerHTML = "You ranked highest in anime! You should watch Suzume™!"
+                }
+                if(tied_scores[0] == 2) {
+                    document.getElementById("thumb").src = "suggest2.jpg";
+                    document.getElementById("suggest_p").innerHTML = "You ranked highest in drama! You should watch Emancipation™!"
+                }
+                if(tied_scores[0] == 3) {
+                    document.getElementById("thumb").src = "suggest3.jpg";
+                    document.getElementById("suggest_p").innerHTML = "You ranked highest in fantasy! You should watch Fantastic Beast: The Secrets of Dumbledore™!"
+                }
+                if(tied_scores[0] == 4) {
+                    document.getElementById("thumb").src = "suggest4.jpg";
+                    document.getElementById("suggest_p").innerHTML = "You ranked highest in horror! You should watch Smile™!"
+                }
+                if(tied_scores[0] == 5) {
+                    document.getElementById("thumb").src = "suggest5.jpg";
+                    document.getElementById("suggest_p").innerHTML = "You ranked highest in comedy! You should watch Dog™!"
+                }
+                if(tied_scores[0] == 6) {
+                    document.getElementById("thumb").src = "suggest6.jpg";
+                    document.getElementById("suggest_p").innerHTML = "You ranked highest in psychological movies! You should watch Deep Water™!"
+                }
+                if(tied_scores[0] == 7) {
+                    document.getElementById("thumb").src = "suggest7.jpg";
+                    document.getElementById("suggest_p").innerHTML = "You ranked highest in science fiction! You should watch MoonFall™!"
+                }
+                if(tied_scores[0] == 8) {
+                    document.getElementById("thumb").src = "suggest8.jpg";
+                    document.getElementById("suggest_p").innerHTML = "You ranked highest in w" +
+                        "estern! You should watch Hostile Territory™!"
+                }
+                if(tied_scores[0] == 9) {
+                    document.getElementById("thumb").src = "suggest9.jpg";
+                    document.getElementById("suggest_p").innerHTML = "You ranked highest in documentaries! You should watch Polar Bear™!"
+                }
+            }
+            else {
+                var rand = tied_scores[Math.floor(Math.random()*tied_scores.length)];
+                document.getElementById("thumb").src = "suggest" + rand +".jpg";
+                document.getElementById("suggest_p").innerHTML = "You have tied in different genres, so we have picked a movie at random for you!"
+            }
+
+
+        }
+    }
 }
-
-
-
